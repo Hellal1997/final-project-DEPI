@@ -1,4 +1,5 @@
-<p align="left"> <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fdepi.eyouthlearning.com%2Flogin&psig=AOvVaw3yiwnSSf3pJcpCeeDgxX0r&ust=1728222279728000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPCOhO2v94gDFQAAAAAdAAAAABAE" /> </p>
+
+<p align="left"> <img src="https://github.com/Hellal1997/final-project-DEPI/blob/b077e0a1572cb6172fcb35da036c71251f41fb1f/depiEN.af7b4f3966c53eedf4b4.png"/> </p>
 
 
 <h1 align="center">DevOps Engineer,Project 1: Automated Deployment Pipeline with Jenkins and Docker</h1>
