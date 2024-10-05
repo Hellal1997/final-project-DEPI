@@ -1,16 +1,11 @@
-
-
 <p align="left"> <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fdepi.eyouthlearning.com%2Flogin&psig=AOvVaw3yiwnSSf3pJcpCeeDgxX0r&ust=1728222279728000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPCOhO2v94gDFQAAAAAdAAAAABAE" /> </p>
 
 
+<h1 align="center">DevOps Engineer,Project 1: Automated Deployment Pipeline with Jenkins and Docker</h1>
 
 
-###DevOps Engineer
 
-Project 1: Automated Deployment Pipeline with Jenkins and Docker
-•
-•
-•
+
 Objective: Implement an automated CI/CD pipeline using Jenkins, Docker,
 and Ansible.
 Description: Develop a pipeline to automate the build, testing, and
