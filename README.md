@@ -1,11 +1,11 @@
 
-<p align="left"> <img src="https://github.com/Hellal1997/final-project-DEPI/blob/b077e0a1572cb6172fcb35da036c71251f41fb1f/depiEN.af7b4f3966c53eedf4b4.png"/> </p>
+   <p align="left"> <img src="https://github.com/Hellal1997/final-project-DEPI/blob/b077e0a1572cb6172fcb35da036c71251f41fb1f/depiEN.af7b4f3966c53eedf4b4.png"/> </p>
 
 
-<h1 align="center">DevOps Engineer,Project 1: Automated Deployment Pipeline with Jenkins and Docker</h1>
+   <h1 align="center">DevOps Engineer,Project: Automated Deployment Pipeline with Jenkins and Docker</h1>
 
 
-________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 
 Objective: Implement an automated CI/CD pipeline using Jenkins, Docker,
@@ -17,9 +17,9 @@ management. Implement automated testing and deployment to a cloud
 environment.
 Technologies to use: Docker, Kubernetes, Jenkins, Ansible, CI/CD, Cloud
 Deployment.
-________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-
-Week 1: Initial Setup & Planning
+________________________________________________________________________________________________________________________________________________________________________________________________________________
+   <h1 align="center">Week 1: Initial Setup & Planning</h1>
+   
 Tasks:
 • Install Jenkins and Docker: Set up the Jenkins server and Docker on local or cloud
 environments.
