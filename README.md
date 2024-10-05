@@ -4,6 +4,7 @@
 <h1 align="center">DevOps Engineer,Project 1: Automated Deployment Pipeline with Jenkins and Docker</h1>
 
 
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 
 Objective: Implement an automated CI/CD pipeline using Jenkins, Docker,
@@ -15,6 +16,7 @@ management. Implement automated testing and deployment to a cloud
 environment.
 Technologies to use: Docker, Kubernetes, Jenkins, Ansible, CI/CD, Cloud
 Deployment.
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 Week 1: Initial Setup & Planning
 Tasks:
@@ -30,6 +32,10 @@ Deliverables:
 • Dockerized application running locally.
 • Basic Ansible setup.
 • CI/CD pipeline plan documented.
+
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
 Week 2: Jenkins & CI Integration
 Tasks:
 • Create Jenkins Jobs: Configure Jenkins to build the Dockerized application.
@@ -45,6 +51,10 @@ Deliverables:
 •
 Automated testing included in the pipeline.
 Notifications configured for pipeline updates.
+
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
 Week 3: Docker & Deployment
 Tasks:
 • Integrate Docker Hub or private registry: Push Docker images to Docker Hub or a
@@ -57,6 +67,10 @@ Deliverables:
 • Docker images automatically pushed to Docker Hub or a registry.
 • Ansible playbooks ready and tested.
 • Successful deployment of the application to a cloud server.
+
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
 Week 4: CI/CD Refinement & Final Testing
 Tasks:
 • Kubernetes Integration: Optional task — configure Kubernetes to orchestrate the
