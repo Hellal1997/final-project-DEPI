@@ -35,9 +35,8 @@ Deliverables:
 • CI/CD pipeline plan documented.
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+   <h1 align="center">Week 2: Jenkins & CI Integration</h1>
 
-
-Week 2: Jenkins & CI Integration
 Tasks:
 • Create Jenkins Jobs: Configure Jenkins to build the Dockerized application.
 • Integrate Git: Set up GitHub or GitLab repository and integrate with Jenkins for
@@ -54,9 +53,8 @@ Automated testing included in the pipeline.
 Notifications configured for pipeline updates.
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+   <h1 align="center">Week 3: Docker & Deployment</h1>
 
-
-Week 3: Docker & Deployment
 Tasks:
 • Integrate Docker Hub or private registry: Push Docker images to Docker Hub or a
 private registry.
@@ -70,9 +68,8 @@ Deliverables:
 • Successful deployment of the application to a cloud server.
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-
-
-Week 4: CI/CD Refinement & Final Testing
+   <h1 align="center">Week 4: CI/CD Refinement & Final Testing</h1>
+   
 Tasks:
 • Kubernetes Integration: Optional task — configure Kubernetes to orchestrate the
 deployment of Docker containers if desired.
