@@ -4,6 +4,7 @@ pipeline {
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 		 PROJECT_ID = "x-plateau-436009-s9"
+		
 	}
     stages {
         stage('Docker Login') {
