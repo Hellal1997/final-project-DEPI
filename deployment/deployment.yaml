@@ -15,7 +15,7 @@ spec:
         app: my-app
     spec:
       containers:
-      - name: my-app-container
+      - name: web-container
         image: themasterahmedemadnour/comingsoon-page
         ports:
         - containerPort: 5000
