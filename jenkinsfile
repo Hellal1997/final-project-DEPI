@@ -26,7 +26,7 @@ pipeline {
                         gcloud auth activate-service-account --key-file=${GCLOUD_KEY}
                         gcloud config set project ${PROJECT_ID}
                         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-                        gcloud container clusters get-credentials gke-depi-project --zone us-central1-c
+                        gcloud container clusters get-credentials gke-gke-depi-project-default-pool-9163f831-bhs7 --zone us-central1-c
                         kubectl cluster-info
                         kubectl set image deployment/app-deployment my-app-container="themasterahmedemadnour/comingsoon-page"
                         kubectl rollout status deployment/app-deployment
