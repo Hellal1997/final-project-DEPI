@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
-	    environment {
+        environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 		PROJECT_ID = "x-plateau-436009-s9"
 		CLUSTER-NAME = 'gke-depi-project'
 		LOCATION = 'us-central1-c'
 		CREDINTIAL_ID = 'kubernates'
 			
-		}
+	}
     stages {
         stage('Docker Login') {
             steps {
