@@ -21,24 +21,19 @@ pipeline {
                 sh 'ansible-playbook ansible-playbook.yml'
             }
         }
-	stage('Deploy to GKE') {
-            steps {
-                echo 'Deploying to Google Kubernetes Engine'
-                script {
-                    withCredentials([file(credentialsId: 'GCLOUD_KEY', variable: 'GCLOUD_KEY')]) {
-                        sh """
-                        gcloud auth activate-service-account --key-file=${GCLOUD_KEY}
-                        gcloud config set project ${PROJECT_ID}
-                        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-                        gcloud container clusters get-credentials gke-depi-project --zone us-central1-c
-                        kubectl cluster-info
-                        kubectl set image deployment/app-deployment my-app-container="themasterahmedemadnour/comingsoon-page"
-                        kubectl rollout status deployment/app-deployment
-                        """
-                    }
-                }
-                
-            }
-    } 
+	stage('Deploy to K8s') {
+			    steps{
+				    echo "Deployment started ..."
+				    sh 'ls -ltr'
+				    sh 'pwd'
+				    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' service.yaml"
+					sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
+				    echo "Start deployment of serviceLB.yaml"
+				    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'serviceLB.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+					echo "Start deployment of deployment.yaml"
+					step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+				    echo "Deployment Finished ..."
+			    }
+		    }
 }
 }
