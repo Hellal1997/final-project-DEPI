@@ -20,7 +20,7 @@ spec:
       - name: web-container
         image: themasterahmedemadnour/comingsoon-page
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         env:
         - name: ENVIRONMENT
           value: "production"
@@ -45,4 +45,4 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 5000
+    targetPort: 80
