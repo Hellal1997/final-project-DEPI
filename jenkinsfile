@@ -4,7 +4,7 @@ pipeline {
         environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 		PROJECT_ID = 'x-plateau-436009-s9'
-		CLUSTER_NAME = 'gke-depi-project'
+		CLUSTER_NAME = 'gke-depi'
 		LOCATION = 'us-central1-c'
 		CREDINTIAL_ID = 'Kubernates'
 			
@@ -30,7 +30,7 @@ pipeline {
                         gcloud auth activate-service-account --key-file=${Kubernates}
                         gcloud config set project ${PROJECT_ID}
                         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-                        gcloud container clusters get-credentials gke-depi-project --zone us-central1-c
+                        gcloud container clusters get-credentials gke-depi --zone us-central1-c
                         kubectl cluster-info
                         kubectl set image deployment/app-deployment my-app-container="themasterahmedemadnour/comingsoon-page"
                         kubectl rollout status deployment/app-deployment
