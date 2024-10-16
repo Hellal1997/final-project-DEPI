@@ -6,7 +6,7 @@ pipeline {
 		PROJECT_ID = 'x-plateau-436009-s9'
 		CLUSTER_NAME = 'gke-depi'
 		LOCATION = 'us-central1-c'
-		CREDINTIAL_ID = 'Kubernates'
+		CREDINTIAL_ID = 'GCP'
 			
 	}
     stages {
@@ -25,9 +25,9 @@ pipeline {
             steps {
                 echo 'Deploying to Google Kubernetes Engine'
                 script {
-                    withCredentials([file(credentialsId: 'Kubernates', variable: 'Kubernates')]) {
+                    withCredentials([file(credentialsId: 'GCP', variable: 'GCP')]) {
                         sh """
-                        gcloud auth activate-service-account --key-file=${Kubernates}
+                        gcloud auth activate-service-account --key-file=${GCP}
                         gcloud config set project ${PROJECT_ID}
                         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
                         gcloud container clusters get-credentials gke-depi --zone us-central1-c
