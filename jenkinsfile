@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo 'Deploying to Google Kubernetes Engine'
                 script {
-                    withCredentials([file(credentialsId: 'GCP', variable: 'GCLOUD_KEY')]) {
+                    withCredentials([file(credentialsId: 'google', variable: 'GCLOUD_KEY')]) {
                         sh """
                         gcloud auth activate-service-account --key-file=${GCLOUD_KEY}
                         gcloud config set project ${PROJECT_ID}
