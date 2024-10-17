@@ -3,13 +3,16 @@ pipeline {
 
         environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-		PROJECT_ID = 'x-plateau-436009-s9'
-		CLUSTER_NAME = 'gke-depi'
-		LOCATION = 'us-central1-c'
-		CREDINTIAL_ID = 'GCP'
+		PROJECT_ID = "x-plateau-436009-s9"
 			
 	}
     stages {
+	stage('Pull Repository') {
+            steps {
+                echo 'Pulling the repository'
+                sh 'git clone https://github.com/Hellal1997/final-project-DEPI.git'
+            }
+        }
         stage('Docker Login') {
             steps {
                 // Add --password-stdin to run docker login command non-interactively
