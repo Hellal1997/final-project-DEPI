@@ -30,6 +30,7 @@ pipeline {
                 script {
 			withCredentials([file(credentialsId: 'GCP', variable: 'GCP')]) {
 			    sh """
+				set +x
 			        gcloud auth activate-service-account --key-file=$GCP
 			        gcloud config set project x-plateau-436009-s9
 			        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
