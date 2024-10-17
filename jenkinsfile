@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building and pushing Docker image...'
-                    sh 'ansible-playbook ansible-playbook.yml'
+                    // sh 'ansible-playbook ansible-playbook.yml'
                 }
             }
         }
