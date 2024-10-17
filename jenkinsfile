@@ -19,8 +19,8 @@ pipeline {
                 """
             }
         }
-                stage('Deploy to Google cloud ') {
-                steps {
+    stage('Deploy to Google cloud ') {
+            steps {
                     echo 'Deploying to Google Kubernetes Engine'
                     script {
                         withCredentials([file(credentialsId: 'GCP', variable: 'GCP')]) {
