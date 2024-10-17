@@ -14,17 +14,17 @@ pipeline {
                 sh 'git clone https://github.com/Hellal1997/final-project-DEPI.git'
             }
         }        
-        // stage('Build & push Dockerfile') {
-        //     steps {
-        //         sh """
-        //         echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin'
-        //         echo 'ansible skipped'
-        //         // ansible-playbook ansible-playbook.yml
-        //         docker build -t ${DOCKERHUB_CREDENTIALS_USR}/comingsoon-page:${BUILD_NUMBER} .
-        //         docker push ${DOCKERHUB_CREDENTIALS_USR}/comingsoon-page:${BUILD_NUMBER}
-        //         """
-        //     }
-        // }
+         stage('Build & push Dockerfile') {
+             steps {
+                 sh """
+                 echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin'
+                 echo 'ansible skipped'
+                 // ansible-playbook ansible-playbook.yml
+                 docker build -t ${DOCKERHUB_CREDENTIALS_USR}/comingsoon-page:${BUILD_NUMBER} .
+                 docker push ${DOCKERHUB_CREDENTIALS_USR}/comingsoon-page:${BUILD_NUMBER}
+                 """
+             }
+         }
             //     stage('Deploy to Google cloud ') {
             //     steps {
             //         echo 'Deploying to Google Kubernetes Engine'
