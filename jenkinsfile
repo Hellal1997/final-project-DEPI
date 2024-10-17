@@ -9,27 +9,22 @@ pipeline {
     stages {
         stage('Docker Login') {
             steps {
-                script {
-                    echo 'Logging into Docker Hub...'
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                }
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('Build & Push Dockerfile') {
             steps {
-                script {
-                    echo 'Building and pushing Docker image...'
-                    // sh 'ansible-playbook ansible-playbook.yml'
-                }
+                sh 'ansible-playbook ansible-playbook.yml'
             }
         }
         stage('Deploy to Google Cloud') {
             steps {
+                echo 'Deploying to Google Kubernetes Engine'
                 script {
-                    echo 'Deploying to Google Kubernetes Engine'
-                    withCredentials([file(credentialsId: 'GCP', variable: 'GCP')]) {
+                    // Securely access the GCP service account key file
+                    withCredentials([file(credentialsId: 'GCP', variable: 'GCP_KEY')]) {
                         sh """
-                        gcloud auth activate-service-account --key-file=${GCP}
+                        gcloud auth activate-service-account --key-file=${GCP_KEY}
                         gcloud config set project ${PROJECT_ID}
                         gcloud container clusters get-credentials gke-depi --zone us-central1-c
                         kubectl cluster-info
@@ -42,4 +37,3 @@ pipeline {
         }
     }
 }
-
