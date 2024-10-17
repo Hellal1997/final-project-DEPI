@@ -17,17 +17,6 @@ pipeline {
                 sh 'ansible-playbook ansible-playbook.yml'
             }
         }
-        stage('Install gke-gcloud-auth-plugin') {
-            steps {
-                echo 'Installing GKE gcloud auth plugin'
-                sh """
-                curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-367.0.0-linux-x86_64.tar.gz
-                tar -xzf google-cloud-sdk-367.0.0-linux-x86_64.tar.gz
-                ./google-cloud-sdk/install.sh
-                ./google-cloud-sdk/bin/gcloud components install gke-gcloud-auth-plugin
-                """
-            }
-        }
         stage('Deploy to Google Cloud') {
             steps {
                 echo 'Deploying to Google Kubernetes Engine'
@@ -36,7 +25,7 @@ pipeline {
                         sh """
                         gcloud auth activate-service-account --key-file=${GCP}
                         gcloud config set project ${PROJECT_ID}
-                        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+                        # Remove the plugin usage here
                         gcloud container clusters get-credentials gke-depi --zone us-central1-c
                         kubectl cluster-info
                         kubectl set image deployment/app-deployment my-app-container="themasterahmedemadnour/comingsoon-page"
