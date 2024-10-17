@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build & Push Dockerfile') {
             steps {
-                sh 'ansible-playbook ansible-playbook.yml'
+               // sh 'ansible-playbook ansible-playbook.yml'
             }
         }
         stage('Deploy to Google Cloud') {
