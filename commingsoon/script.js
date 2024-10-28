@@ -1,65 +1,82 @@
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1'
-const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="'
+let item_flex = document.querySelector(".item_flex");
+let spinner = document.querySelector(".spinner");
+spinner.style.display = "flex";
+fetch(`https://mp3quran.net/api/v3/reciters`)
+  .then((res) => res.json())
+  .then((datas) => {
+    spinner.style.display = "none";
+    let { reciters } = datas;
 
-const main = document.getElementById('main')
-const form = document.getElementById('form')
-const search = document.getElementById('search')
-
-// Get initial movies
-getMovies(API_URL)
-
-async function getMovies(url) {
-    const res = await fetch(url)
-    const data = await res.json()
-
-    showMovies(data.results)
-}
-
-function showMovies(movies) {
-    main.innerHTML = ''
-
-    movies.forEach((movie) => {
-        const { title, poster_path, vote_average, overview } = movie
-
-        const movieEl = document.createElement('div')
-        movieEl.classList.add('movie')
-
-        movieEl.innerHTML = `
-            <img src="${IMG_PATH + poster_path}" alt="${title}">
-            <div class="movie-info">
-          <h3>${title}</h3>
-          <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+    for (let i = 0; i < reciters.length; i++) {
+      let box = `
+        <a href="Readers/index.html?${reciters[i].id}" class="item">
+            <div class="right">
+                <div class="rectangle">
+                    <section>
+                        ${reciters[i].id}
+                    </section>
+                </div>
+                <div class="surah_name">
+                    <li>${reciters[i].name}</li>
+                    <li class="rwaya">${reciters[i].moshaf[0].name}</li>
+                </div>
             </div>
-            <div class="overview">
-          <h3>Overview</h3>
-          ${overview}
-        </div>
-        `
-        main.appendChild(movieEl)
-    })
-}
-
-function getClassByRate(vote) {
-    if(vote >= 8) {
-        return 'green'
-    } else if(vote >= 5) {
-        return 'orange'
-    } else {
-        return 'red'
+            
+        </a>
+        `;
+      item_flex.innerHTML += box;
     }
-}
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
+    let footer_div = document.querySelector(".footer_div");
+let boxer = `<footer class="text-center text-lg-start" style="border-top: 1px solid #464b50">
 
-    const searchTerm = search.value
+</footer>`;
 
-    if(searchTerm && searchTerm !== '') {
-        getMovies(SEARCH_API + searchTerm)
+footer_div.innerHTML = boxer;
+  });
 
-        search.value = ''
-    } else {
-        window.location.reload()
+
+
+// https://www.mp3quran.net/api/v3/recent_reads?language=ar
+// item_flex.innerHTML = ""
+let search_div_inpt = document.getElementById("search_div_inpt");
+
+search_div_inpt.addEventListener("keyup", myFun);
+
+function myFun() {
+  if (search_div_inpt.value !== "") {
+    if (search_div_inpt.value.length > 0) {
+      spinner.style.display = "flex";
+      fetch(`https://www.mp3quran.net/api/v3/recent_reads?language=ar`)
+        .then((el) => el.json())
+        .then((data) => {
+          item_flex.innerHTML = "";
+          spinner.style.display = "none";
+          let val = search_div_inpt.value;
+          let { reads } = data;
+          console.log(reads);
+          for (let i = 0; i < reads.length; i++) {
+            if (reads[i].name.includes(val)) {
+              let box = `
+                        <a href="/SurahsForReader/index.html?${reads[i].id}" class="item">
+                            <div class="right">
+                                <div class="rectangle">
+                                    <section>
+                                        ${reads[i].id}
+                                    </section>
+                                </div>
+                                <div class="surah_name">
+                                    <li>${reads[i].name}</li>
+                                    <li class="rwaya">${reads[i].moshaf[0].name}</li>
+                                </div>
+                            </div>
+                            
+                        </a>
+                        `;
+              item_flex.innerHTML += box;
+            }
+          }
+        });
     }
-})
+  }
+}
