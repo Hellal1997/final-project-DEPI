@@ -1,82 +1,52 @@
-let item_flex = document.querySelector(".item_flex");
-let spinner = document.querySelector(".spinner");
-spinner.style.display = "flex";
-fetch(`https://mp3quran.net/api/v3/reciters`)
-  .then((res) => res.json())
-  .then((datas) => {
-    spinner.style.display = "none";
-    let { reciters } = datas;
+let audio = document.querySelector('.quranPlayer'),
+    surahContainer = document.querySelector('.surahs'),
+    ayah = document.querySelector('.ayah'),
+    next = document.querySelector('.next'),
+    prev = document.querySelector('.previous'),
+    play = document.querySelector('.play'),
+    title = document.getElementById('title');
 
-    for (let i = 0; i < reciters.length; i++) {
-      let box = `
-        <a href="Readers/index.html?${reciters[i].id}" class="item">
-            <div class="right">
-                <div class="rectangle">
-                    <section>
-                        ${reciters[i].id}
-                    </section>
-                </div>
-                <div class="surah_name">
-                    <li>${reciters[i].name}</li>
-                    <li class="rwaya">${reciters[i].moshaf[0].name}</li>
-                </div>
-            </div>
-            
-        </a>
-        `;
-      item_flex.innerHTML += box;
-    }
+getSurahs();
 
-    let footer_div = document.querySelector(".footer_div");
-let boxer = `<footer class="text-center text-lg-start" style="border-top: 1px solid #464b50">
-
-</footer>`;
-
-footer_div.innerHTML = boxer;
-  });
-
-
-
-// https://www.mp3quran.net/api/v3/recent_reads?language=ar
-// item_flex.innerHTML = ""
-let search_div_inpt = document.getElementById("search_div_inpt");
-
-search_div_inpt.addEventListener("keyup", myFun);
-
-function myFun() {
-  if (search_div_inpt.value !== "") {
-    if (search_div_inpt.value.length > 0) {
-      spinner.style.display = "flex";
-      fetch(`https://www.mp3quran.net/api/v3/recent_reads?language=ar`)
-        .then((el) => el.json())
-        .then((data) => {
-          item_flex.innerHTML = "";
-          spinner.style.display = "none";
-          let val = search_div_inpt.value;
-          let { reads } = data;
-          console.log(reads);
-          for (let i = 0; i < reads.length; i++) {
-            if (reads[i].name.includes(val)) {
-              let box = `
-                        <a href="/SurahsForReader/index.html?${reads[i].id}" class="item">
-                            <div class="right">
-                                <div class="rectangle">
-                                    <section>
-                                        ${reads[i].id}
-                                    </section>
-                                </div>
-                                <div class="surah_name">
-                                    <li>${reads[i].name}</li>
-                                    <li class="rwaya">${reads[i].moshaf[0].name}</li>
-                                </div>
-                            </div>
-                            
-                        </a>
-                        `;
-              item_flex.innerHTML += box;
+function getSurahs() {
+    fetch('https://quran-endpoint.vercel.app/quran')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.data);
+            for (let surah in data.data) {
+                surahContainer.innerHTML += `
+                    <div>
+                        <p class="ar">${data.data[surah].asma.ar.long}</p>
+                        <p>${data.data[surah].asma.en.long} (${data.data[surah].asma.translation.en})</p>
+                    </div>
+                `
             }
-          }
-        });
-    }
-  }
+
+            // select all surahs
+            let allSurahs = document.querySelectorAll('.surahs div');
+            let index;
+
+            allSurahs.forEach((surah, idx) => {
+                surah.addEventListener('click', () => {
+                    index = idx;
+                    play(idx);
+                })
+            })
+
+            prev.addEventListener('click', () => {
+                (index > 0) ? index-- : index;
+                play(index);
+            })
+
+            next.addEventListener('click', () => {
+                (index < 114) ? index++ : index;
+                play(index);
+            })
+
+            function play(idx) {
+                console.log(idx);
+                audio.src = data.data[idx].recitation.full;
+                title.innerText = `${idx+1}. ${data.data[idx].asma.en.long}`;
+            }
+        })
 }
