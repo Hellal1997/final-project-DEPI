@@ -53,7 +53,7 @@ Automated testing included in the pipeline.
 Notifications configured for pipeline updates.
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-   <h1 align="center">Week 3: Docker & Deployment</h1>
+   <h1 align="center">Week 3: Docker& Deployment</h1>
 
 Tasks:
 • Integrate Docker Hub or private registry: Push Docker images to Docker Hub or a
